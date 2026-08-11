@@ -1,0 +1,17 @@
+.annee-select {
+  width: 260px;
+}
+
+.effectif-field {
+  width: 90px;
+
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    padding: 0 8px;
+  }
+}
+
+.empty {
+  padding: 24px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}

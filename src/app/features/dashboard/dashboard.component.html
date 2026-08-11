@@ -1,0 +1,119 @@
+<div class="dashboard">
+  <h1>Bienvenue, {{ authService.currentUser()?.nom_complet }}</h1>
+  <p class="roles">
+    Rôle(s) :
+    @for (role of authService.currentUser()?.roles; track role) {
+      <span class="role-chip">{{ roleLabel(role) }}</span>
+    }
+    @if (resume()?.annee_scolaire) {
+      <span class="annee-chip">Année scolaire {{ resume()?.annee_scolaire?.libelle }}</span>
+    }
+  </p>
+
+  @if (loading()) {
+    <div class="loading">
+      <mat-spinner diameter="36"></mat-spinner>
+    </div>
+  } @else if (aucuneAnneeActive()) {
+    <p class="note">Aucune année scolaire active n'est configurée pour le moment.</p>
+  } @else {
+    <div class="cards-grid">
+      @if (resume()?.eleves; as eleves) {
+        <mat-card class="dashboard-card">
+          <div class="card-header">
+            <mat-icon>diversity_3</mat-icon>
+            <h2>Élèves</h2>
+          </div>
+          <p class="card-total">{{ eleves.total }}</p>
+          <p class="card-sub">{{ eleves.garcons }} garçons · {{ eleves.filles }} filles</p>
+          <div class="chart-box">
+            <canvas baseChart [data]="elevesChartData()" [options]="pieOptions" type="pie"></canvas>
+          </div>
+        </mat-card>
+      }
+
+      @if (resume()?.classes; as classes) {
+        <mat-card class="dashboard-card">
+          <div class="card-header">
+            <mat-icon>school</mat-icon>
+            <h2>Classes</h2>
+          </div>
+          <p class="card-total">{{ classes.total }}</p>
+          <p class="card-sub">Effectif par classe</p>
+          <div class="chart-box">
+            <canvas baseChart [data]="classesChartData()" [options]="barOptions" type="bar"></canvas>
+          </div>
+        </mat-card>
+      }
+
+      @if (resume()?.personnel; as personnel) {
+        <mat-card class="dashboard-card">
+          <div class="card-header">
+            <mat-icon>groups</mat-icon>
+            <h2>Personnel</h2>
+          </div>
+          <p class="card-total">{{ personnel.total }}</p>
+          <p class="card-sub">Répartition par rôle</p>
+          <div class="chart-box">
+            <canvas baseChart [data]="personnelChartData()" [options]="doughnutOptions" type="doughnut"></canvas>
+          </div>
+        </mat-card>
+      }
+
+      @if (resume()?.paiements; as paiements) {
+        <mat-card class="dashboard-card">
+          <div class="card-header">
+            <mat-icon>payments</mat-icon>
+            <h2>Paiements</h2>
+          </div>
+          <p class="card-total">{{ paiements.montant_collecte }} FCFA</p>
+          <p class="card-sub">
+            sur {{ paiements.montant_attendu }} FCFA attendus
+            @if (paiements.taux_recouvrement !== null) {
+              ({{ paiements.taux_recouvrement }} %)
+            }
+          </p>
+          <div class="chart-box">
+            <canvas baseChart [data]="paiementsChartData()" [options]="lineOptions" type="line"></canvas>
+          </div>
+        </mat-card>
+      }
+
+      @if (resume()?.presence; as presence) {
+        <mat-card class="dashboard-card">
+          <div class="card-header">
+            <mat-icon>schedule</mat-icon>
+            <h2>Présence enseignants</h2>
+          </div>
+          <p class="card-total">
+            {{ presence.presents_aujourdhui }} / {{ presence.enseignants_actifs }}
+          </p>
+          <p class="card-sub">
+            @if (presence.taux_presence_jour !== null) {
+              {{ presence.taux_presence_jour }} % présents aujourd'hui
+            } @else {
+              Aucun enseignant actif
+            }
+          </p>
+          <div class="chart-box">
+            <canvas baseChart [data]="presenceChartData()" [options]="presenceBarOptions" type="bar"></canvas>
+          </div>
+        </mat-card>
+      }
+
+      @if (resume()?.absences; as absences) {
+        <mat-card class="dashboard-card">
+          <div class="card-header">
+            <mat-icon>event_busy</mat-icon>
+            <h2>Absences élèves</h2>
+          </div>
+          <p class="card-total">{{ absences.mois_courant }}</p>
+          <p class="card-sub">Ce mois-ci · évolution sur l'année</p>
+          <div class="chart-box">
+            <canvas baseChart [data]="absencesChartData()" [options]="lineOptions" type="line"></canvas>
+          </div>
+        </mat-card>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,116 @@
+<div class="page">
+  <div class="page-header">
+    <h1>Paie du personnel</h1>
+    <button mat-flat-button color="primary" (click)="ouvrirCreation()">
+      <mat-icon>add</mat-icon>
+      Nouveau salaire
+    </button>
+  </div>
+
+  <div class="filters">
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Mois</mat-label>
+      <mat-select [(ngModel)]="moisFilter" (selectionChange)="charger()">
+        <mat-option value="">Tous</mat-option>
+        @for (label of moisLabels; track $index) {
+          <mat-option [value]="$index + 1">{{ label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Année</mat-label>
+      <input matInput type="number" [(ngModel)]="anneeFilter" (change)="charger()" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Statut</mat-label>
+      <mat-select [(ngModel)]="statutFilter" (selectionChange)="charger()">
+        <mat-option value="">Tous</mat-option>
+        <mat-option value="paye">Payé</mat-option>
+        <mat-option value="non_paye">Non payé</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  @if (loading()) {
+    <app-table-skeleton [columns]="displayedColumns.length"></app-table-skeleton>
+  } @else {
+  <table mat-table [dataSource]="salaires()" class="mat-elevation-z1 full-width">
+    <ng-container matColumnDef="personnel">
+      <th mat-header-cell *matHeaderCellDef>Personnel</th>
+      <td mat-cell *matCellDef="let salaire">{{ salaire.user?.nom_complet }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="periode">
+      <th mat-header-cell *matHeaderCellDef>Période</th>
+      <td mat-cell *matCellDef="let salaire">{{ salaire.mois_libelle }} {{ salaire.annee }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="salaire_base">
+      <th mat-header-cell *matHeaderCellDef>Salaire de base</th>
+      <td mat-cell *matCellDef="let salaire">{{ salaire.salaire_base }} FCFA</td>
+    </ng-container>
+
+    <ng-container matColumnDef="primes">
+      <th mat-header-cell *matHeaderCellDef>Primes</th>
+      <td mat-cell *matCellDef="let salaire">{{ salaire.primes }} FCFA</td>
+    </ng-container>
+
+    <ng-container matColumnDef="retenues">
+      <th mat-header-cell *matHeaderCellDef>Retenues</th>
+      <td mat-cell *matCellDef="let salaire">{{ salaire.retenues }} FCFA</td>
+    </ng-container>
+
+    <ng-container matColumnDef="montant_net">
+      <th mat-header-cell *matHeaderCellDef>Net à payer</th>
+      <td mat-cell *matCellDef="let salaire"><strong>{{ salaire.montant_net }} FCFA</strong></td>
+    </ng-container>
+
+    <ng-container matColumnDef="statut">
+      <th mat-header-cell *matHeaderCellDef>Statut</th>
+      <td mat-cell *matCellDef="let salaire">
+        <span class="statut-chip" [class.inactif]="salaire.statut === 'non_paye'">
+          {{ salaire.statut === 'paye' ? 'Payé' : 'Non payé' }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let salaire">
+        @if (peutModifier(salaire)) {
+          <button mat-icon-button matTooltip="Modifier" (click)="ouvrirEdition(salaire)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        }
+        @if (salaire.statut === 'non_paye') {
+          <button mat-icon-button matTooltip="Marquer comme payé" (click)="payer(salaire)">
+            <mat-icon>paid</mat-icon>
+          </button>
+        }
+        <button
+          mat-icon-button
+          matTooltip="Bulletin de paie PDF"
+          [disabled]="enregistrementId() === salaire.id"
+          (click)="imprimerBulletin(salaire)"
+        >
+          <mat-icon>picture_as_pdf</mat-icon>
+        </button>
+        @if (peutModifier(salaire)) {
+          <button mat-icon-button matTooltip="Supprimer" (click)="supprimer(salaire)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        }
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  @if (salaires().length === 0) {
+    <p class="empty">Aucun salaire trouvé pour cette période.</p>
+  }
+  }
+</div>

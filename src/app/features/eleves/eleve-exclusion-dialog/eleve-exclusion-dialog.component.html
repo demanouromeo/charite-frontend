@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Exclure {{ data.eleve.nom_complet }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-dialog-content class="form-stack">
+    <mat-form-field appearance="outline">
+      <mat-label>Motif de l'exclusion</mat-label>
+      <textarea matInput formControlName="motif" rows="3" required></textarea>
+      @if (form.controls.motif.hasError('required') && form.controls.motif.touched) {
+        <mat-error>Le motif est requis.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date d'exclusion</mat-label>
+      <input matInput type="date" formControlName="date_exclusion" required />
+      @if (form.controls.date_exclusion.hasError('required') && form.controls.date_exclusion.touched) {
+        <mat-error>La date d'exclusion est requise.</mat-error>
+      }
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" [mat-dialog-close]="null">Annuler</button>
+    <button mat-flat-button color="warn" type="submit">Exclure</button>
+  </mat-dialog-actions>
+</form>

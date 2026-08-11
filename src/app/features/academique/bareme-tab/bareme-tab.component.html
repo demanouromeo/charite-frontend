@@ -1,0 +1,70 @@
+<div class="tab-content">
+  <div class="tab-header">
+    <mat-form-field appearance="outline" class="annee-select">
+      <mat-label>Année scolaire</mat-label>
+      <mat-select [(ngModel)]="anneeSelectionneeId" (selectionChange)="charger()">
+        @for (annee of annees(); track annee.id) {
+          <mat-option [value]="annee.id">{{ annee.libelle }} @if (annee.is_active) {
+              (active)
+            }</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <table mat-table [dataSource]="classes()" class="mat-elevation-z1 full-width">
+    <ng-container matColumnDef="classe">
+      <th mat-header-cell *matHeaderCellDef>Classe</th>
+      <td mat-cell *matCellDef="let classe">{{ classe.nom }} <span class="hint">({{ classe.section.nom }})</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="montant_total">
+      <th mat-header-cell *matHeaderCellDef>Montant total</th>
+      <td mat-cell *matCellDef="let classe">
+        @if (baremePour(classe); as bareme) {
+          {{ bareme.montant_total }} FCFA
+        } @else {
+          <span class="hint">Non défini</span>
+        }
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tranches">
+      <th mat-header-cell *matHeaderCellDef>Tranches</th>
+      <td mat-cell *matCellDef="let classe">
+        @if (baremePour(classe); as bareme) {
+          T1 : {{ bareme.montant_tranche1 }} — T2 : {{ bareme.montant_tranche2 }} — T3 : {{ bareme.montant_tranche3 }}
+        } @else {
+          <span class="hint">—</span>
+        }
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let classe">
+        @if (peutGerer()) {
+          @if (baremePour(classe); as bareme) {
+            <button mat-icon-button matTooltip="Modifier" (click)="ouvrirEdition(classe, bareme)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Supprimer" (click)="supprimer(bareme)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          } @else {
+            <button mat-icon-button matTooltip="Définir le barème" (click)="ouvrirCreation(classe)">
+              <mat-icon>add</mat-icon>
+            </button>
+          }
+        }
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  @if (!loading() && classes().length === 0) {
+    <p class="empty">Aucune classe définie.</p>
+  }
+</div>

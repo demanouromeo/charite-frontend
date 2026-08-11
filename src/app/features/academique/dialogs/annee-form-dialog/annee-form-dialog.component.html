@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Nouvelle année scolaire</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-dialog-content class="form-stack">
+    <mat-form-field appearance="outline">
+      <mat-label>Libellé</mat-label>
+      <input matInput formControlName="libelle" placeholder="ex: 2025-2026" required />
+      @if (form.controls.libelle.hasError('required') && form.controls.libelle.touched) {
+        <mat-error>Le libellé est requis.</mat-error>
+      }
+      @if (form.controls.libelle.hasError('pattern') && form.controls.libelle.touched) {
+        <mat-error>Format attendu : AAAA-AAAA</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date de début</mat-label>
+      <input matInput type="date" formControlName="date_debut" required />
+      @if (form.controls.date_debut.hasError('required') && form.controls.date_debut.touched) {
+        <mat-error>La date de début est requise.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date de fin</mat-label>
+      <input matInput type="date" formControlName="date_fin" required />
+      @if (form.controls.date_fin.hasError('required') && form.controls.date_fin.touched) {
+        <mat-error>La date de fin est requise.</mat-error>
+      }
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" [mat-dialog-close]="null">Annuler</button>
+    <button mat-flat-button color="primary" type="submit">Créer</button>
+  </mat-dialog-actions>
+</form>

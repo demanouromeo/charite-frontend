@@ -1,0 +1,45 @@
+<div class="tab-content">
+  <div class="tab-header">
+    <p class="hint">Les types de classe (SIL à CM2 / Class 1 à 6) sont communs à toutes les années scolaires.</p>
+    @if (isAdmin()) {
+      <button mat-flat-button color="primary" (click)="ouvrirCreation()">
+        <mat-icon>add</mat-icon>
+        Nouvelle classe
+      </button>
+    }
+  </div>
+
+  <table mat-table [dataSource]="classes()" class="mat-elevation-z1 full-width">
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef>Classe</th>
+      <td mat-cell *matCellDef="let classe">{{ classe.nom }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="niveau">
+      <th mat-header-cell *matHeaderCellDef>Niveau</th>
+      <td mat-cell *matCellDef="let classe">{{ classe.niveau }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="section">
+      <th mat-header-cell *matHeaderCellDef>Section</th>
+      <td mat-cell *matCellDef="let classe">{{ classe.section.nom }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let classe">
+        <button mat-icon-button matTooltip="Modifier" (click)="ouvrirEdition(classe)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        @if (isAdmin()) {
+          <button mat-icon-button matTooltip="Supprimer" (click)="supprimer(classe)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        }
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

@@ -1,0 +1,47 @@
+.page {
+  padding: 8px 4px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  h1 {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+}
+
+.actions-header {
+  display: flex;
+  gap: 8px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 12px;
+  margin-bottom: 8px;
+}
+
+.filter {
+  width: 200px;
+}
+
+.recherche {
+  width: 260px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.empty {
+  padding: 24px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}

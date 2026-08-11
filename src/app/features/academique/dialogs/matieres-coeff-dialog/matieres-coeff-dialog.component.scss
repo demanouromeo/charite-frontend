@@ -1,0 +1,24 @@
+.lignes {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 420px;
+
+  @media (max-width: 600px) {
+    min-width: 0;
+  }
+}
+
+.ligne {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.matiere-field {
+  flex: 1;
+}
+
+.coeff-field {
+  width: 100px;
+}

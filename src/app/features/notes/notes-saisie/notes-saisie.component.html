@@ -1,0 +1,158 @@
+<div class="page">
+  <h1>Saisie des notes</h1>
+
+  <div class="page-header">
+    @if (grille()) {
+      <button mat-stroked-button [class.active]="toolboxOuverte()" (click)="basculerToolbox()">
+        <mat-icon>bar_chart</mat-icon>
+        Taux de remplissage
+      </button>
+    }
+    @if (peutImprimerTableauHonneur() && classeAnneeSelectionneeId() && sequenceSelectionneeId()) {
+      <button mat-stroked-button [disabled]="telechargementHonneur()" (click)="imprimerTableauHonneur()">
+        <mat-icon>emoji_events</mat-icon>
+        Tableau d'honneur
+      </button>
+    }
+  </div>
+
+  @if (grille() && toolboxOuverte()) {
+    <div class="toolbox-remplissage">
+      <div class="remplissage-global">
+        <span class="libelle">
+          Ensemble de la classe : {{ remplissageGlobal().rempli }} / {{ remplissageGlobal().total }} notes saisies
+          ({{ remplissageGlobal().taux }}%)
+        </span>
+        <mat-progress-bar
+          mode="determinate"
+          [value]="remplissageGlobal().taux"
+          [class.complet]="remplissageGlobal().taux === 100"
+          [class.faible]="remplissageGlobal().taux < 50"
+        ></mat-progress-bar>
+      </div>
+
+      <div class="remplissage-matieres">
+        @for (m of remplissageParMatiere(); track m.classe_matiere_id) {
+          <div class="remplissage-matiere">
+            <span class="nom">{{ m.nom }}</span>
+            <mat-progress-bar
+              mode="determinate"
+              [value]="m.taux"
+              [class.complet]="m.taux === 100"
+              [class.faible]="m.taux < 50"
+            ></mat-progress-bar>
+            <span class="valeur">{{ m.rempli }}/{{ m.total }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <div class="filters">
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Année scolaire</mat-label>
+      <mat-select [ngModel]="anneeSelectionneeId()" (ngModelChange)="onAnneeChange($event)">
+        @for (annee of annees(); track annee.id) {
+          <mat-option [value]="annee.id">{{ annee.libelle }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Classe</mat-label>
+      <mat-select [(ngModel)]="classeAnneeSelectionneeId" (selectionChange)="onSelectionChange()">
+        @for (ca of classesDisponibles(); track ca.id) {
+          <mat-option [value]="ca.id">{{ ca.classe.nom }} ({{ ca.classe.section.code }})</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Séquence</mat-label>
+      <mat-select [(ngModel)]="sequenceSelectionneeId" (selectionChange)="onSelectionChange()">
+        @for (s of sequencesDisponibles(); track s.id) {
+          <mat-option [value]="s.id">{{ s.label }} @if (s.verrouille) { (verrouillée) }</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  @if (classesDisponibles().length === 0) {
+    <p class="hint">Aucune classe ne vous est assignée pour cette année scolaire.</p>
+  }
+
+  @if (sequenceSelectionnee()?.verrouille) {
+    <div class="banniere" [class.forcable]="peutForcerSaisieBloquee()">
+      <mat-icon>lock</mat-icon>
+      @if (peutForcerSaisieBloquee()) {
+        <span>Cette séquence est verrouillée. En tant qu'administrateur, vous pouvez tout de même saisir des notes.</span>
+      } @else {
+        <span>Cette séquence est verrouillée. La saisie des notes n'est plus autorisée.</span>
+      }
+    </div>
+  }
+
+  @if (grille()) {
+    <div class="table-wrapper" [class.chargement]="loading()">
+      @if (loading()) {
+        <div class="overlay-chargement">
+          <mat-spinner diameter="40"></mat-spinner>
+        </div>
+      }
+
+      <table class="notes-table">
+        <thead>
+          <tr>
+            <th class="col-eleve">Élève</th>
+            @for (matiere of grille()!.matieres; track matiere.classe_matiere_id) {
+              <th>{{ matiere.nom }} <span class="coef">(coef. {{ matiere.coefficient }})</span></th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (eleve of grille()!.eleves; track eleve.id) {
+            <tr>
+              <td class="col-eleve">{{ eleve.nom_complet }} <span class="matricule">{{ eleve.matricule }}</span></td>
+              @for (matiere of grille()!.matieres; track matiere.classe_matiere_id) {
+                <td>
+                  <input
+                    type="number"
+                    min="0"
+                    max="20"
+                    step="0.25"
+                    [value]="obtenirValeur(eleve.id, matiere.classe_matiere_id)"
+                    (change)="definirValeur(eleve.id, matiere.classe_matiere_id, $event)"
+                    [disabled]="!peutSaisir() || loading()"
+                  />
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      @if (grille()!.eleves.length === 0) {
+        <p class="hint">Aucun élève inscrit dans cette classe.</p>
+      }
+    </div>
+
+    <div class="actions">
+      <button mat-flat-button color="primary" [disabled]="!peutSaisir() || loading() || enregistrement()" (click)="enregistrer()">
+        @if (enregistrement()) {
+          <mat-spinner diameter="18"></mat-spinner>
+        } @else {
+          Enregistrer les notes
+        }
+      </button>
+    </div>
+  } @else if (loading()) {
+    <div class="overlay-wrapper-vide">
+      <mat-spinner diameter="40"></mat-spinner>
+      <span>Chargement…</span>
+    </div>
+  } @else if (classeAnneeSelectionneeId() && sequenceSelectionneeId()) {
+    <p class="hint">Aucune donnée disponible.</p>
+  } @else {
+    <p class="hint">Sélectionnez une classe et une séquence pour afficher la grille de saisie.</p>
+  }
+</div>

@@ -1,0 +1,136 @@
+<div class="page">
+  <div class="page-header">
+    <h1>Élèves</h1>
+    <div class="actions-header">
+      @if (peutImprimer()) {
+        <button mat-stroked-button [disabled]="impression()" (click)="imprimerListe()">
+          <mat-icon>print</mat-icon>
+          Imprimer la liste
+        </button>
+      }
+      @if (peutCreer()) {
+        <button mat-flat-button color="primary" (click)="ouvrirCreation()">
+          <mat-icon>person_add</mat-icon>
+          Nouvel élève
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="filters">
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Année scolaire</mat-label>
+      <mat-select [ngModel]="anneeSelectionneeId()" (ngModelChange)="onAnneeChange($event)">
+        @for (annee of annees(); track annee.id) {
+          <mat-option [value]="annee.id">{{ annee.libelle }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Classe</mat-label>
+      <mat-select [(ngModel)]="classeAnneeSelectionneeId" (selectionChange)="charger()">
+        <mat-option [value]="null">Toutes les classes</mat-option>
+        @for (ca of classesAnnee(); track ca.id) {
+          <mat-option [value]="ca.id">{{ ca.classe.nom }} ({{ ca.classe.section.code }})</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Statut</mat-label>
+      <mat-select [(ngModel)]="statutFiltre" (selectionChange)="charger()">
+        <mat-option value="">Tous</mat-option>
+        <mat-option value="actif">Actif</mat-option>
+        <mat-option value="exclu">Exclu</mat-option>
+        <mat-option value="parti">Parti</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter recherche">
+      <mat-label>Rechercher (nom, matricule)</mat-label>
+      <input matInput [(ngModel)]="recherche" (keyup.enter)="charger()" />
+      <button mat-icon-button matSuffix (click)="charger()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  @if (loading()) {
+    <app-table-skeleton [columns]="displayedColumns.length"></app-table-skeleton>
+  } @else {
+  <table mat-table [dataSource]="eleves()" class="mat-elevation-z1 full-width">
+    <ng-container matColumnDef="matricule">
+      <th mat-header-cell *matHeaderCellDef>Matricule</th>
+      <td mat-cell *matCellDef="let eleve">{{ eleve.matricule }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nom_complet">
+      <th mat-header-cell *matHeaderCellDef>Nom</th>
+      <td mat-cell *matCellDef="let eleve">{{ eleve.nom_complet }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="sexe">
+      <th mat-header-cell *matHeaderCellDef>Sexe</th>
+      <td mat-cell *matCellDef="let eleve">{{ eleve.sexe }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="classe">
+      <th mat-header-cell *matHeaderCellDef>Classe</th>
+      <td mat-cell *matCellDef="let eleve">{{ classeLabel(eleve) }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="statut">
+      <th mat-header-cell *matHeaderCellDef>Statut</th>
+      <td mat-cell *matCellDef="let eleve">
+        <span class="statut-chip" [class.inactif]="eleve.statut !== 'actif'">
+          {{ statutLabels[eleve.statut] ?? eleve.statut }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let eleve">
+        @if (peutGererScolarite()) {
+          <button mat-icon-button matTooltip="Scolarité" (click)="ouvrirScolarite(eleve)">
+            <mat-icon>payments</mat-icon>
+          </button>
+        }
+        @if (peutImprimerBulletins()) {
+          <button mat-icon-button matTooltip="Bulletins" (click)="ouvrirBulletins(eleve)">
+            <mat-icon>description</mat-icon>
+          </button>
+        }
+        @if (peutModifier()) {
+          <button mat-icon-button matTooltip="Modifier" (click)="ouvrirEdition(eleve)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        }
+        @if (peutExclure() && eleve.statut === 'actif') {
+          <button mat-icon-button matTooltip="Exclure" (click)="exclure(eleve)">
+            <mat-icon>block</mat-icon>
+          </button>
+        }
+        @if (peutExclure() && eleve.statut === 'exclu') {
+          <button mat-icon-button matTooltip="Réintégrer" (click)="reintegrer(eleve)">
+            <mat-icon>restart_alt</mat-icon>
+          </button>
+        }
+        @if (peutSupprimer()) {
+          <button mat-icon-button matTooltip="Supprimer" (click)="supprimer(eleve)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        }
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  @if (eleves().length === 0) {
+    <p class="empty">Aucun élève trouvé.</p>
+  }
+  }
+</div>

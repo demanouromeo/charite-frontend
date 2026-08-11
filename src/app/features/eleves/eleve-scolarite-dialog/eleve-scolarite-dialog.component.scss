@@ -1,0 +1,70 @@
+.contenu {
+  min-width: 560px;
+
+  @media (max-width: 600px) {
+    min-width: 0;
+  }
+}
+
+.resume {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.carte {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f5f5f5;
+
+  .libelle {
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .valeur {
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    &.payee {
+      color: #2e7d32;
+    }
+
+    &.solde-du {
+      color: #b71c1c;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.form-paiement {
+  margin-top: 16px;
+
+  h3 {
+    font-size: 0.95rem;
+    margin: 0 0 8px;
+  }
+
+  .ligne {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    button {
+      margin-top: 4px;
+    }
+  }
+}

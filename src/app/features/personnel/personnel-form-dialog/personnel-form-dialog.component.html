@@ -1,0 +1,83 @@
+<h2 mat-dialog-title>{{ isEdit ? 'Modifier' : 'Nouveau membre du personnel' }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-dialog-content class="form-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="nom" required />
+      @if (form.controls.nom.hasError('required') && form.controls.nom.touched) {
+        <mat-error>Le nom est requis.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Prénom</mat-label>
+      <input matInput formControlName="prenom" required />
+      @if (form.controls.prenom.hasError('required') && form.controls.prenom.touched) {
+        <mat-error>Le prénom est requis.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" required />
+      @if (form.controls.email.hasError('required') && form.controls.email.touched) {
+        <mat-error>L'email est requis.</mat-error>
+      }
+      @if (form.controls.email.hasError('email') && form.controls.email.touched) {
+        <mat-error>Adresse email invalide.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Téléphone</mat-label>
+      <input matInput formControlName="telephone" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Sexe</mat-label>
+      <mat-select formControlName="sexe">
+        <mat-option value="M">Masculin</mat-option>
+        <mat-option value="F">Féminin</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Ancienneté (date d'entrée)</mat-label>
+      <input matInput type="date" formControlName="anciennete_date" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Rôle</mat-label>
+      <mat-select formControlName="role" [disabled]="isEdit" required>
+        @for (option of roleOptions; track option.value) {
+          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+      @if (isEdit) {
+        <mat-hint>Le changement de rôle se fait depuis la liste.</mat-hint>
+      }
+      @if (form.controls.role.hasError('required') && form.controls.role.touched) {
+        <mat-error>Le rôle est requis.</mat-error>
+      }
+    </mat-form-field>
+
+    @if (!isEdit) {
+      <mat-form-field appearance="outline">
+        <mat-label>Mot de passe initial</mat-label>
+        <input matInput type="password" formControlName="password" required />
+        @if (form.controls.password.hasError('required') && form.controls.password.touched) {
+          <mat-error>Le mot de passe est requis.</mat-error>
+        }
+        @if (form.controls.password.hasError('minlength') && form.controls.password.touched) {
+          <mat-error>8 caractères minimum.</mat-error>
+        }
+      </mat-form-field>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" [mat-dialog-close]="null">Annuler</button>
+    <button mat-flat-button color="primary" type="submit">{{ isEdit ? 'Enregistrer' : 'Créer' }}</button>
+  </mat-dialog-actions>
+</form>

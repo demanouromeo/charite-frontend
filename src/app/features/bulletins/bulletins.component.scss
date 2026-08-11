@@ -1,0 +1,58 @@
+.page {
+  padding: 8px 4px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+
+  h1 {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 8px;
+}
+
+.filter {
+  width: 220px;
+}
+
+.type-choix {
+  display: flex;
+  align-items: center;
+
+  mat-radio-button {
+    margin-right: 16px;
+  }
+}
+
+.actions-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 32px 0;
+}
+
+.empty {
+  padding: 24px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}

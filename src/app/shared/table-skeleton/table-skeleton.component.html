@@ -1,0 +1,11 @@
+<table class="skeleton-table mat-elevation-z1">
+  <tbody>
+    @for (row of rowsArray; track $index) {
+      <tr class="skeleton-row">
+        @for (col of columnsArray; track $index) {
+          <td><div class="skeleton-bar"></div></td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>

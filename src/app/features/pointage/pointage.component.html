@@ -1,0 +1,112 @@
+<div class="page">
+  <h1>Pointage</h1>
+
+  @if (!vueGestion()) {
+    <div class="carte-jour">
+      <h3>Aujourd'hui</h3>
+      <p>Arrivée : <strong>{{ pointageAujourdhui()?.heure_arrivee ?? '—' }}</strong></p>
+      <p>Départ : <strong>{{ pointageAujourdhui()?.heure_depart ?? '—' }}</strong></p>
+      <div class="actions">
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="enregistrement() || !!pointageAujourdhui()?.heure_arrivee"
+          (click)="pointerMaintenant('arrivee')"
+        >
+          Pointer mon arrivée
+        </button>
+        <button
+          mat-flat-button
+          color="accent"
+          [disabled]="enregistrement() || !pointageAujourdhui()?.heure_arrivee || !!pointageAujourdhui()?.heure_depart"
+          (click)="pointerMaintenant('depart')"
+        >
+          Pointer mon départ
+        </button>
+      </div>
+    </div>
+  }
+
+  @if (vueGestion()) {
+    <div class="form-pointage">
+      <mat-form-field appearance="outline" class="filter">
+        <mat-label>Enseignant</mat-label>
+        <mat-select [(ngModel)]="enseignantSelectionneId" (selectionChange)="charger()">
+          @for (e of enseignants(); track e.id) {
+            <mat-option [value]="e.id">{{ e.nom_complet }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="filter">
+        <mat-label>Date</mat-label>
+        <input matInput type="date" [(ngModel)]="dateSelectionnee" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="filter-heure">
+        <mat-label>Heure d'arrivée</mat-label>
+        <input matInput type="time" [(ngModel)]="heureArrivee" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="filter-heure">
+        <mat-label>Heure de départ</mat-label>
+        <input matInput type="time" [(ngModel)]="heureDepart" />
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" [disabled]="!enseignantSelectionneId() || enregistrement()" (click)="enregistrerGestion()">
+        Enregistrer
+      </button>
+    </div>
+  }
+
+  <div class="filters">
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Mois</mat-label>
+      <mat-select [(ngModel)]="moisFiltre" (selectionChange)="charger()">
+        @for (m of mois; track m.value) {
+          <mat-option [value]="m.value">{{ m.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter">
+      <mat-label>Année</mat-label>
+      <input matInput type="number" [(ngModel)]="anneeFiltre" (change)="charger()" />
+    </mat-form-field>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="pointage-table">
+      <thead>
+        <tr>
+          @if (vueGestion()) {
+            <th>Enseignant</th>
+          }
+          <th>Date</th>
+          <th>Arrivée</th>
+          <th>Départ</th>
+          <th>Saisi par</th>
+          <th>Modifié par</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (p of pointages(); track p.id) {
+          <tr>
+            @if (vueGestion()) {
+              <td>{{ p.enseignant_nom }}</td>
+            }
+            <td>{{ p.date }}</td>
+            <td>{{ p.heure_arrivee ?? '—' }}</td>
+            <td>{{ p.heure_depart ?? '—' }}</td>
+            <td>{{ p.saisi_par ?? '—' }}</td>
+            <td>{{ p.modifie_par ?? '—' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    @if (!loading() && pointages().length === 0) {
+      <p class="hint">Aucun pointage pour cette période.</p>
+    }
+  </div>
+</div>

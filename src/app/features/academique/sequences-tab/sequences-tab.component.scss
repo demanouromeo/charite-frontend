@@ -1,0 +1,45 @@
+.annee-select {
+  width: 260px;
+}
+
+.trimestre {
+  margin-bottom: 16px;
+
+  h3 {
+    font-size: 1rem;
+    margin: 0 0 8px;
+  }
+}
+
+.sequences {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sequence-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #e8f5e9;
+  color: #1b5e20;
+
+  &.verrouillee {
+    background: #ffebee;
+    color: #b71c1c;
+  }
+
+  mat-icon:first-child {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.empty {
+  padding: 24px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}

@@ -1,0 +1,78 @@
+<h2 mat-dialog-title>{{ isEdit ? 'Modifier le salaire' : 'Nouveau salaire' }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-dialog-content class="form-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Membre du personnel</mat-label>
+      <mat-select formControlName="user_id" [disabled]="isEdit" required>
+        @for (personne of personnel; track personne.id) {
+          <mat-option [value]="personne.id">{{ personne.nom_complet }}</mat-option>
+        }
+      </mat-select>
+      @if (form.controls.user_id.hasError('required') && form.controls.user_id.touched) {
+        <mat-error>Le membre du personnel est requis.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Mois</mat-label>
+      <mat-select formControlName="mois" [disabled]="isEdit" required>
+        @for (option of moisOptions; track option.value) {
+          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+      @if (form.controls.mois.hasError('required') && form.controls.mois.touched) {
+        <mat-error>Le mois est requis.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Année</mat-label>
+      <input matInput type="number" formControlName="annee" [readonly]="isEdit" required />
+      @if (form.controls.annee.hasError('required') && form.controls.annee.touched) {
+        <mat-error>L'année est requise.</mat-error>
+      }
+      @if (form.controls.annee.hasError('min') && form.controls.annee.touched) {
+        <mat-error>Année invalide.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Salaire de base (FCFA)</mat-label>
+      <input matInput type="number" formControlName="salaire_base" required />
+      @if (form.controls.salaire_base.hasError('required') && form.controls.salaire_base.touched) {
+        <mat-error>Le salaire de base est requis.</mat-error>
+      }
+      @if (form.controls.salaire_base.hasError('min') && form.controls.salaire_base.touched) {
+        <mat-error>Le montant doit être positif.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Primes (FCFA)</mat-label>
+      <input matInput type="number" formControlName="primes" required />
+      @if (form.controls.primes.hasError('required') && form.controls.primes.touched) {
+        <mat-error>Les primes sont requises.</mat-error>
+      }
+      @if (form.controls.primes.hasError('min') && form.controls.primes.touched) {
+        <mat-error>Le montant doit être positif.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Retenues (FCFA)</mat-label>
+      <input matInput type="number" formControlName="retenues" required />
+      @if (form.controls.retenues.hasError('required') && form.controls.retenues.touched) {
+        <mat-error>Les retenues sont requises.</mat-error>
+      }
+      @if (form.controls.retenues.hasError('min') && form.controls.retenues.touched) {
+        <mat-error>Le montant doit être positif.</mat-error>
+      }
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" [mat-dialog-close]="null">Annuler</button>
+    <button mat-flat-button color="primary" type="submit">{{ isEdit ? 'Enregistrer' : 'Créer' }}</button>
+  </mat-dialog-actions>
+</form>

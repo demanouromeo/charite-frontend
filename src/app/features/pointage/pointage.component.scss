@@ -1,0 +1,84 @@
+.page {
+  padding: 8px 4px;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin: 0 0 8px;
+}
+
+.carte-jour {
+  padding: 16px 20px;
+  border-radius: 8px;
+  background: #f5f5f5;
+  margin-bottom: 16px;
+  max-width: 360px;
+
+  h3 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+  }
+
+  p {
+    margin: 4px 0;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+  }
+}
+
+.form-pointage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  button {
+    margin-top: 4px;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.filter {
+  min-width: 220px;
+}
+
+.filter-heure {
+  width: 150px;
+}
+
+.hint {
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.pointage-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: white;
+
+  th,
+  td {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 8px 10px;
+    text-align: left;
+  }
+
+  th {
+    background: #fafafa;
+  }
+}

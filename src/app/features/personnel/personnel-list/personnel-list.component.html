@@ -1,0 +1,123 @@
+<div class="page">
+  <div class="page-header">
+    <h1>Personnel</h1>
+    <div class="actions-header">
+      @if (peutImprimer()) {
+        <button mat-stroked-button [disabled]="impression()" (click)="imprimerListe()">
+          <mat-icon>print</mat-icon>
+          Imprimer la liste
+        </button>
+      }
+      @if (isAdmin()) {
+        <button mat-flat-button color="primary" (click)="ouvrirCreation()">
+          <mat-icon>add</mat-icon>
+          Nouveau
+        </button>
+      }
+    </div>
+  </div>
+
+  <mat-form-field appearance="outline" class="filter">
+    <mat-label>Filtrer par rôle</mat-label>
+    <mat-select [(ngModel)]="roleFilter" (selectionChange)="charger()">
+      <mat-option value="">Tous</mat-option>
+      <mat-option value="administrateur">Administrateur</mat-option>
+      <mat-option value="econome">Économe</mat-option>
+      <mat-option value="secretaire">Secrétaire</mat-option>
+      <mat-option value="enseignant">Enseignant</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  @if (loading()) {
+    <app-table-skeleton [columns]="displayedColumns.length"></app-table-skeleton>
+  } @else {
+  <table mat-table [dataSource]="personnel()" class="mat-elevation-z1 full-width">
+    <ng-container matColumnDef="matricule">
+      <th mat-header-cell *matHeaderCellDef>Matricule</th>
+      <td mat-cell *matCellDef="let user">{{ user.matricule }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nom_complet">
+      <th mat-header-cell *matHeaderCellDef>Nom</th>
+      <td mat-cell *matCellDef="let user">{{ user.nom_complet }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="telephone">
+      <th mat-header-cell *matHeaderCellDef>Téléphone</th>
+      <td mat-cell *matCellDef="let user">{{ user.telephone || '—' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="roles">
+      <th mat-header-cell *matHeaderCellDef>Rôle</th>
+      <td mat-cell *matCellDef="let user">
+        @if (isAdmin()) {
+          <mat-form-field appearance="outline" class="role-select">
+            <mat-select [ngModel]="user.roles[0]" (ngModelChange)="changerRole(user, $event)">
+              <mat-option value="administrateur">Administrateur</mat-option>
+              <mat-option value="econome">Économe</mat-option>
+              <mat-option value="secretaire">Secrétaire</mat-option>
+              <mat-option value="enseignant">Enseignant</mat-option>
+            </mat-select>
+          </mat-form-field>
+        } @else {
+          @for (role of user.roles; track role) {
+            <span class="role-chip">{{ roleLabels[role] ?? role }}</span>
+          }
+        }
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="statut">
+      <th mat-header-cell *matHeaderCellDef>Statut</th>
+      <td mat-cell *matCellDef="let user">
+        <span class="statut-chip" [class.inactif]="user.statut === 'inactif'">
+          {{ user.statut === 'actif' ? 'Actif' : 'Inactif' }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let user">
+        <div class="actions-cell">
+          @if (peutModifier(user)) {
+            <button mat-icon-button matTooltip="Modifier" (click)="ouvrirEdition(user)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          }
+          @if (isAdmin()) {
+            <button
+              mat-icon-button
+              [matTooltip]="user.statut === 'actif' ? 'Désactiver' : 'Activer'"
+              [disabled]="user.id === authService.currentUser()?.id"
+              (click)="basculerStatut(user)"
+            >
+              <mat-icon>{{ user.statut === 'actif' ? 'toggle_on' : 'toggle_off' }}</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              matTooltip="Supprimer"
+              [disabled]="user.id === authService.currentUser()?.id"
+              (click)="supprimer(user)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          }
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  @if (personnel().length === 0) {
+    <p class="empty">Aucun membre du personnel trouvé.</p>
+  }
+  }
+</div>

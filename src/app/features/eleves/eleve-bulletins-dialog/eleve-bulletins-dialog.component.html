@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Bulletin — {{ data.eleve.nom_complet }} ({{ data.anneeLibelle }})</h2>
+
+<mat-dialog-content class="contenu">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Type de bulletin</mat-label>
+    <mat-select [(ngModel)]="type" (selectionChange)="onTypeChange()">
+      <mat-option value="sequence">Séquentiel</mat-option>
+      <mat-option value="trimestre">Trimestriel</mat-option>
+      <mat-option value="annuel">Annuel</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  @if (type() === 'sequence') {
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Séquence</mat-label>
+      <mat-select [(ngModel)]="sequenceId">
+        @for (s of sequences(); track s.id) {
+          <mat-option [value]="s.id">{{ s.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+
+  @if (type() === 'trimestre') {
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Trimestre</mat-label>
+      <mat-select [(ngModel)]="trimestreId">
+        @for (t of trimestres(); track t.id) {
+          <mat-option [value]="t.id">{{ t.libelle }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+
+  @if (type() === 'annuel') {
+    <p class="hint">Le bulletin annuel récapitule les 3 trimestres de {{ data.anneeLibelle }}.</p>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="null">Fermer</button>
+  <button mat-flat-button color="primary" [disabled]="!peutTelecharger() || telechargement()" (click)="telecharger()">
+    Télécharger le PDF
+  </button>
+</mat-dialog-actions>

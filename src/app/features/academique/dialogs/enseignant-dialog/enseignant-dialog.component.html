@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Affecter un enseignant à {{ data.classeAnnee.classe.nom }}</h2>
+
+<mat-dialog-content class="form-stack">
+  <mat-form-field appearance="outline">
+    <mat-label>Enseignant</mat-label>
+    <mat-select [(ngModel)]="enseignantId">
+      @for (enseignant of enseignants(); track enseignant.id) {
+        <mat-option [value]="enseignant.id">{{ enseignant.nom_complet }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <p class="hint">Rappel : un enseignant ne peut être responsable de plus de 2 classes sur l'année scolaire.</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" [mat-dialog-close]="null">Annuler</button>
+  <button mat-flat-button color="primary" [disabled]="!enseignantId()" (click)="submit()">Affecter</button>
+</mat-dialog-actions>

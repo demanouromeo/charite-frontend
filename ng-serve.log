@@ -1,0 +1,530 @@
+[33m❯[39m Building...
+[32m✔[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                   [2m | [22m [1mRaw size[22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                  [2m | [22m  [36m9.52 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                    [2m | [22m  [36m5.63 kB[39m[2m | [22m
+[32mchunk-4Q6H5WUF.js[39m  [2m | [22m[2m-[22m                       [2m | [22m  [36m3.07 kB[39m[2m | [22m
+[32mchunk-XAFNPPSS.js[39m  [2m | [22m[2m-[22m                       [2m | [22m  [36m1.60 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m           [2m | [22m [1m19.83 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                   [2m | [22m [1mRaw size[22m
+[32mchunk-2IJIMZAV.js[39m  [2m | [22m[2macademique-component[22m    [2m | [22m[36m194.69 kB[39m[2m | [22m
+[32mchunk-UAMVTAHO.js[39m  [2m | [22m[2meleves-list-component[22m   [2m | [22m[36m124.07 kB[39m[2m | [22m
+[32mchunk-Q5W4OHQX.js[39m  [2m | [22m[2mpaie-list-component[22m     [2m | [22m [36m55.98 kB[39m[2m | [22m
+[32mchunk-DY2KFFDT.js[39m  [2m | [22m[2mpersonnel-list-component[22m[2m | [22m [36m53.84 kB[39m[2m | [22m
+[32mchunk-Y2W5X6TX.js[39m  [2m | [22m[2mnotes-saisie-component[22m  [2m | [22m [36m45.93 kB[39m[2m | [22m
+[32mchunk-LLBOXPBW.js[39m  [2m | [22m[2mbulletins-component[22m     [2m | [22m [36m33.76 kB[39m[2m | [22m
+[32mchunk-2GHYZYES.js[39m  [2m | [22m[2mpointage-component[22m      [2m | [22m [36m30.84 kB[39m[2m | [22m
+[32mchunk-6KYCHXSV.js[39m  [2m | [22m[2mdiscipline-component[22m    [2m | [22m [36m30.82 kB[39m[2m | [22m
+[32mchunk-WZSC2CNM.js[39m  [2m | [22m[2mdashboard-component[22m     [2m | [22m [36m29.95 kB[39m[2m | [22m
+[32mchunk-EX3WZYGZ.js[39m  [2m | [22m[2mstatistiques-component[22m  [2m | [22m [36m28.88 kB[39m[2m | [22m
+[32mchunk-AJ22XTKW.js[39m  [2m | [22m[2mabsences-component[22m      [2m | [22m [36m26.70 kB[39m[2m | [22m
+[32mchunk-Y66BC4KW.js[39m  [2m | [22m[2mprofile-component[22m       [2m | [22m [36m21.10 kB[39m[2m | [22m
+[32mchunk-HX223BNR.js[39m  [2m | [22m[2mlogin-component[22m         [2m | [22m [36m16.36 kB[39m[2m | [22m
+[32mchunk-F2CTYGEB.js[39m  [2m | [22m[2mshell-component[22m         [2m | [22m [36m13.74 kB[39m[2m | [22m
+[32mchunk-QWHPQUR7.js[39m  [2m | [22m[2m-[22m                       [2m | [22m  [36m5.37 kB[39m[2m | [22m
+[2m...and 7 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [20.967 seconds] - 2026-08-11T20:28:21.695Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                   [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                    [2m | [22m  [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                   [2m | [22m [1mRaw size[22m
+[32mchunk-CZ3O7OHQ.js[39m  [2m | [22m[2meleves-list-component[22m   [2m | [22m[36m124.07 kB[39m[2m | [22m
+[32mchunk-KABXO2B3.js[39m  [2m | [22m[2mpaie-list-component[22m     [2m | [22m [36m55.97 kB[39m[2m | [22m
+[32mchunk-52AGZHR3.js[39m  [2m | [22m[2mpersonnel-list-component[22m[2m | [22m [36m53.83 kB[39m[2m | [22m
+
+Application bundle generation complete. [5.630 seconds] - 2026-08-11T20:30:15.186Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                   [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                    [2m | [22m [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                   [2m | [22m[1mRaw size[22m
+[32mchunk-QVOD4BOR.js[39m  [2m | [22m[2mpersonnel-list-component[22m[2m | [22m[36m54.73 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.851 seconds] - 2026-08-11T20:58:10.491Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                   [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                    [2m | [22m [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                   [2m | [22m[1mRaw size[22m
+[32mchunk-JDJ3TLMV.js[39m  [2m | [22m[2mpersonnel-list-component[22m[2m | [22m[36m55.45 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.045 seconds] - 2026-08-11T21:13:52.199Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                   [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                    [2m | [22m [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                   [2m | [22m[1mRaw size[22m
+[32mchunk-SFOJPO6O.js[39m  [2m | [22m[2mpersonnel-list-component[22m[2m | [22m[36m55.58 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.189 seconds] - 2026-08-11T21:14:00.318Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                   [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                    [2m | [22m [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                   [2m | [22m[1mRaw size[22m
+[32mchunk-CQSJHBSV.js[39m  [2m | [22m[2mpersonnel-list-component[22m[2m | [22m[36m55.60 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.133 seconds] - 2026-08-11T21:22:39.265Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [1.715 seconds] - 2026-08-11T21:36:18.366Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2554: Expected 1 arguments, but got 2.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/services/auth.service.ts:25:50:
+[37m      25 │       tap((response) => this.setSession(response, [32mrememberMe[37m)),
+         ╵                                                   [32m~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                   [2m | [22m [1mRaw size[22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                  [2m | [22m  [36m9.52 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                    [2m | [22m  [36m5.63 kB[39m[2m | [22m
+[32mchunk-AB7SGTOH.js[39m  [2m | [22m[2m-[22m                       [2m | [22m  [36m3.58 kB[39m[2m | [22m
+[32mchunk-XAFNPPSS.js[39m  [2m | [22m[2m-[22m                       [2m | [22m  [36m1.60 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m           [2m | [22m [1m20.34 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                   [2m | [22m [1mRaw size[22m
+[32mchunk-3GKEG53T.js[39m  [2m | [22m[2macademique-component[22m    [2m | [22m[36m194.69 kB[39m[2m | [22m
+[32mchunk-UTEVNQ3B.js[39m  [2m | [22m[2meleves-list-component[22m   [2m | [22m[36m124.07 kB[39m[2m | [22m
+[32mchunk-6ELK4UQ3.js[39m  [2m | [22m[2mpaie-list-component[22m     [2m | [22m [36m55.97 kB[39m[2m | [22m
+[32mchunk-EXO6APUP.js[39m  [2m | [22m[2mpersonnel-list-component[22m[2m | [22m [36m55.60 kB[39m[2m | [22m
+[32mchunk-XVTGFXPD.js[39m  [2m | [22m[2mnotes-saisie-component[22m  [2m | [22m [36m45.93 kB[39m[2m | [22m
+[32mchunk-LLBOXPBW.js[39m  [2m | [22m[2mbulletins-component[22m     [2m | [22m [36m33.76 kB[39m[2m | [22m
+[32mchunk-IBAIX5LC.js[39m  [2m | [22m[2mpointage-component[22m      [2m | [22m [36m30.84 kB[39m[2m | [22m
+[32mchunk-5OJZXLS6.js[39m  [2m | [22m[2mdiscipline-component[22m    [2m | [22m [36m30.82 kB[39m[2m | [22m
+[32mchunk-FFZBFKMC.js[39m  [2m | [22m[2mdashboard-component[22m     [2m | [22m [36m29.95 kB[39m[2m | [22m
+[32mchunk-EX3WZYGZ.js[39m  [2m | [22m[2mstatistiques-component[22m  [2m | [22m [36m28.88 kB[39m[2m | [22m
+[32mchunk-KBLZNKWG.js[39m  [2m | [22m[2mabsences-component[22m      [2m | [22m [36m26.70 kB[39m[2m | [22m
+[32mchunk-WEN6UAH5.js[39m  [2m | [22m[2mprofile-component[22m       [2m | [22m [36m21.10 kB[39m[2m | [22m
+[32mchunk-NL4ACDNZ.js[39m  [2m | [22m[2mlogin-component[22m         [2m | [22m [36m16.36 kB[39m[2m | [22m
+[32mchunk-HSQR5F4W.js[39m  [2m | [22m[2mshell-component[22m         [2m | [22m [36m13.74 kB[39m[2m | [22m
+[32mchunk-QWHPQUR7.js[39m  [2m | [22m[2m-[22m                       [2m | [22m  [36m5.37 kB[39m[2m | [22m
+[2m...and 7 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [3.807 seconds] - 2026-08-11T21:36:30.041Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                   [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                    [2m | [22m  [36m5.63 kB[39m[2m | [22m
+[32mchunk-ETD663H7.js[39m  [2m | [22m[2m-[22m                       [2m | [22m  [36m3.59 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                   [2m | [22m [1mRaw size[22m
+[32mchunk-PAE2D6HQ.js[39m  [2m | [22m[2macademique-component[22m    [2m | [22m[36m194.69 kB[39m[2m | [22m
+[32mchunk-4QHLLK7Y.js[39m  [2m | [22m[2meleves-list-component[22m   [2m | [22m[36m124.07 kB[39m[2m | [22m
+[32mchunk-HUMQTMGN.js[39m  [2m | [22m[2mpaie-list-component[22m     [2m | [22m [36m55.97 kB[39m[2m | [22m
+[32mchunk-ERCVI3C5.js[39m  [2m | [22m[2mpersonnel-list-component[22m[2m | [22m [36m55.60 kB[39m[2m | [22m
+[32mchunk-6Y5YR6VG.js[39m  [2m | [22m[2mnotes-saisie-component[22m  [2m | [22m [36m45.93 kB[39m[2m | [22m
+[32mchunk-PKROB6LK.js[39m  [2m | [22m[2mpointage-component[22m      [2m | [22m [36m30.84 kB[39m[2m | [22m
+[32mchunk-PN4V3OI3.js[39m  [2m | [22m[2mdiscipline-component[22m    [2m | [22m [36m30.82 kB[39m[2m | [22m
+[32mchunk-X3UZ7L4M.js[39m  [2m | [22m[2mdashboard-component[22m     [2m | [22m [36m29.95 kB[39m[2m | [22m
+[32mchunk-PQC3AQTB.js[39m  [2m | [22m[2mabsences-component[22m      [2m | [22m [36m26.70 kB[39m[2m | [22m
+[32mchunk-GWZVOALI.js[39m  [2m | [22m[2mprofile-component[22m       [2m | [22m [36m21.10 kB[39m[2m | [22m
+[32mchunk-TKKCMH3F.js[39m  [2m | [22m[2mlogin-component[22m         [2m | [22m [36m16.36 kB[39m[2m | [22m
+[32mchunk-BFKPZZSF.js[39m  [2m | [22m[2mshell-component[22m         [2m | [22m [36m13.74 kB[39m[2m | [22m
+
+Application bundle generation complete. [3.009 seconds] - 2026-08-11T21:36:35.847Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m           [2m | [22m [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mchunk-XHF6YPR2.js[39m  [2m | [22m[2mlogin-component[22m[2m | [22m[36m16.56 kB[39m[2m | [22m
+
+Application bundle generation complete. [3.761 seconds] - 2026-08-11T21:36:43.269Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m           [2m | [22m [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mchunk-ZYP4575K.js[39m  [2m | [22m[2mlogin-component[22m[2m | [22m[36m16.61 kB[39m[2m | [22m
+
+Application bundle generation complete. [2.810 seconds] - 2026-08-11T21:36:48.991Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m           [2m | [22m [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mchunk-QVN3HHLX.js[39m  [2m | [22m[2mlogin-component[22m[2m | [22m[36m16.92 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.404 seconds] - 2026-08-11T21:36:51.909Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m           [2m | [22m [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mchunk-CS5YCLAJ.js[39m  [2m | [22m[2mlogin-component[22m[2m | [22m[36m17.05 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.117 seconds] - 2026-08-11T21:36:56.115Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                   [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                    [2m | [22m  [36m5.63 kB[39m[2m | [22m
+[32mchunk-AV74BWSC.js[39m  [2m | [22m[2m-[22m                       [2m | [22m  [36m3.81 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                   [2m | [22m [1mRaw size[22m
+[32mchunk-RPOKOWPL.js[39m  [2m | [22m[2macademique-component[22m    [2m | [22m[36m194.69 kB[39m[2m | [22m
+[32mchunk-43B5S4TO.js[39m  [2m | [22m[2meleves-list-component[22m   [2m | [22m[36m124.07 kB[39m[2m | [22m
+[32mchunk-XUGVP6YM.js[39m  [2m | [22m[2mpaie-list-component[22m     [2m | [22m [36m55.97 kB[39m[2m | [22m
+[32mchunk-5TCIASFY.js[39m  [2m | [22m[2mpersonnel-list-component[22m[2m | [22m [36m55.60 kB[39m[2m | [22m
+[32mchunk-Y5JFOQ3W.js[39m  [2m | [22m[2mnotes-saisie-component[22m  [2m | [22m [36m45.93 kB[39m[2m | [22m
+[32mchunk-OYKZU25H.js[39m  [2m | [22m[2mpointage-component[22m      [2m | [22m [36m30.84 kB[39m[2m | [22m
+[32mchunk-ND7DIQL3.js[39m  [2m | [22m[2mdiscipline-component[22m    [2m | [22m [36m30.82 kB[39m[2m | [22m
+[32mchunk-5LO3L7YE.js[39m  [2m | [22m[2mdashboard-component[22m     [2m | [22m [36m29.95 kB[39m[2m | [22m
+[32mchunk-MBPS7V64.js[39m  [2m | [22m[2mabsences-component[22m      [2m | [22m [36m26.70 kB[39m[2m | [22m
+[32mchunk-FL27J223.js[39m  [2m | [22m[2mprofile-component[22m       [2m | [22m [36m21.10 kB[39m[2m | [22m
+[32mchunk-T5TUIU63.js[39m  [2m | [22m[2mlogin-component[22m         [2m | [22m [36m17.05 kB[39m[2m | [22m
+[32mchunk-NJL6U3BT.js[39m  [2m | [22m[2mshell-component[22m         [2m | [22m [36m13.74 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.764 seconds] - 2026-08-11T21:41:47.972Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m           [2m | [22m [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mchunk-3I7CZQAB.js[39m  [2m | [22m[2mlogin-component[22m[2m | [22m[36m17.44 kB[39m[2m | [22m
+
+Application bundle generation complete. [2.177 seconds] - 2026-08-11T21:42:02.992Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m           [2m | [22m [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mchunk-67ERM3AI.js[39m  [2m | [22m[2mlogin-component[22m[2m | [22m[36m17.44 kB[39m[2m | [22m
+
+Application bundle generation complete. [6.085 seconds] - 2026-08-11T21:42:11.656Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m           [2m | [22m [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mchunk-FTMFZJKH.js[39m  [2m | [22m[2mlogin-component[22m[2m | [22m[36m17.77 kB[39m[2m | [22m
+
+Application bundle generation complete. [4.419 seconds] - 2026-08-11T21:42:16.696Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m           [2m | [22m [36m5.63 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m          [2m | [22m[1mRaw size[22m
+[32mchunk-7FSVTNH5.js[39m  [2m | [22m[2mlogin-component[22m[2m | [22m[36m18.38 kB[39m[2m | [22m
+
+Application bundle generation complete. [3.808 seconds] - 2026-08-11T21:42:24.420Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                    [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                     [2m | [22m  [36m5.90 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                    [2m | [22m [1mRaw size[22m
+[32mchunk-7PD2OEXH.js[39m  [2m | [22m[2macademique-component[22m     [2m | [22m[36m194.69 kB[39m[2m | [22m
+[32mchunk-HKGUEX6J.js[39m  [2m | [22m[2meleves-list-component[22m    [2m | [22m[36m124.07 kB[39m[2m | [22m
+[32mchunk-4OGILOYB.js[39m  [2m | [22m[2mpaie-list-component[22m      [2m | [22m [36m55.97 kB[39m[2m | [22m
+[32mchunk-X3HGFYH6.js[39m  [2m | [22m[2mpersonnel-list-component[22m [2m | [22m [36m55.60 kB[39m[2m | [22m
+[32mchunk-GIK34IDG.js[39m  [2m | [22m[2mbulletins-component[22m      [2m | [22m [36m33.76 kB[39m[2m | [22m
+[32mchunk-QSFRMEEV.js[39m  [2m | [22m[2mreset-password-component[22m [2m | [22m [36m19.04 kB[39m[2m | [22m
+[32mchunk-ADORDSHN.js[39m  [2m | [22m[2mforgot-password-component[22m[2m | [22m [36m16.57 kB[39m[2m | [22m
+
+Application bundle generation complete. [5.647 seconds] - 2026-08-11T21:43:40.994Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/eleves/eleves-list/eleves-list.component.html:87:13:
+[37m      87 │           {{ [32mstatutLabels[eleve.statut] ?? eleve.statut[37m }}
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ElevesListComponent.
+
+    src/app/features/eleves/eleves-list/eleves-list.component.ts:55:15:
+[37m      55 │   templateUrl: [32m'./eleves-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Page reload sent to client(s).

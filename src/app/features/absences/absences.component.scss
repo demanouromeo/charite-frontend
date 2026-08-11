@@ -1,0 +1,80 @@
+.page {
+  padding: 8px 4px;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin: 0 0 8px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.filter {
+  min-width: 220px;
+}
+
+.hint {
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.overlay-wrapper-vide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 0;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.absences-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: white;
+
+  th,
+  td {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 8px 10px;
+    text-align: left;
+  }
+
+  th {
+    background: #fafafa;
+  }
+
+  tr.absent {
+    background: #ffebee;
+  }
+
+  .matricule {
+    display: block;
+    font-size: 0.8em;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .motif-input {
+    width: 100%;
+    padding: 4px 6px;
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    border-radius: 4px;
+
+    &:disabled {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: transparent;
+    }
+  }
+}
+
+.actions {
+  margin-top: 16px;
+}

@@ -1,0 +1,33 @@
+.profile-page {
+  padding: 8px 4px;
+  max-width: 760px;
+
+  h1 {
+    font-size: 1.4rem;
+  }
+}
+
+.section {
+  padding: 20px 24px;
+  margin-bottom: 20px;
+
+  h2 {
+    margin-top: 0;
+    font-size: 1.05rem;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 16px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+}

@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>{{ isEdit ? 'Modifier la matière' : 'Nouvelle matière' }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-dialog-content class="form-stack">
+    <mat-form-field appearance="outline">
+      <mat-label>Section</mat-label>
+      <mat-select formControlName="section_id">
+        <mat-option [value]="null">Commune aux deux sections</mat-option>
+        @for (section of data.sections; track section.id) {
+          <mat-option [value]="section.id">{{ section.nom }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nom de la matière</mat-label>
+      <input matInput formControlName="nom" required />
+      @if (form.controls.nom.hasError('required') && form.controls.nom.touched) {
+        <mat-error>Le nom de la matière est requis.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Code</mat-label>
+      <input matInput formControlName="code" required />
+      @if (form.controls.code.hasError('required') && form.controls.code.touched) {
+        <mat-error>Le code est requis.</mat-error>
+      }
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" [mat-dialog-close]="null">Annuler</button>
+    <button mat-flat-button color="primary" type="submit">{{ isEdit ? 'Enregistrer' : 'Créer' }}</button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,113 @@
+<h2 mat-dialog-title>{{ isEdit ? "Modifier l'élève" : 'Nouvelle inscription' }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-dialog-content class="form-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="nom" required />
+      @if (form.controls.nom.hasError('required') && form.controls.nom.touched) {
+        <mat-error>Le nom est requis.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Prénom</mat-label>
+      <input matInput formControlName="prenom" required />
+      @if (form.controls.prenom.hasError('required') && form.controls.prenom.touched) {
+        <mat-error>Le prénom est requis.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Sexe</mat-label>
+      <mat-select formControlName="sexe" required>
+        <mat-option value="M">Masculin</mat-option>
+        <mat-option value="F">Féminin</mat-option>
+      </mat-select>
+      @if (form.controls.sexe.hasError('required') && form.controls.sexe.touched) {
+        <mat-error>Le sexe est requis.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date de naissance</mat-label>
+      <input matInput type="date" formControlName="date_naissance" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nom du père</mat-label>
+      <input matInput formControlName="nom_pere" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nom de la mère</mat-label>
+      <input matInput formControlName="nom_mere" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Contact tuteur</mat-label>
+      <input matInput formControlName="contact_tuteur" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Adresse</mat-label>
+      <input matInput formControlName="adresse" />
+    </mat-form-field>
+
+    @if (!isEdit) {
+      <mat-form-field appearance="outline">
+        <mat-label>Année scolaire</mat-label>
+        <mat-select
+          [ngModel]="anneeSelectionneeId()"
+          [ngModelOptions]="{ standalone: true }"
+          (ngModelChange)="onAnneeChange($event)"
+        >
+          @for (annee of annees(); track annee.id) {
+            <mat-option [value]="annee.id">{{ annee.libelle }}</mat-option>
+          }
+        </mat-select>
+        @if (!chargementAnnees() && annees().length === 0) {
+          <mat-hint>Aucune année scolaire créée.</mat-hint>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Classe</mat-label>
+        <mat-select formControlName="classe_annee_id" required>
+          @for (ca of classesAnnee(); track ca.id) {
+            <mat-option [value]="ca.id">{{ ca.classe.nom }} ({{ ca.classe.section.code }})</mat-option>
+          }
+        </mat-select>
+        @if (form.controls.classe_annee_id.hasError('required') && form.controls.classe_annee_id.touched) {
+          <mat-error>La classe est requise.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Date d'inscription</mat-label>
+        <input matInput type="date" formControlName="date_inscription" required />
+        @if (form.controls.date_inscription.hasError('required') && form.controls.date_inscription.touched) {
+          <mat-error>La date d'inscription est requise.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Frais d'inscription dû (FCFA)</mat-label>
+        <input matInput type="number" min="0" formControlName="frais_inscription_du" required />
+        @if (form.controls.frais_inscription_du.hasError('required') && form.controls.frais_inscription_du.touched) {
+          <mat-error>Le frais d'inscription dû est requis.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Frais d'inscription payé (FCFA)</mat-label>
+        <input matInput type="number" min="0" formControlName="frais_inscription_paye" />
+      </mat-form-field>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" [mat-dialog-close]="null">Annuler</button>
+    <button mat-flat-button color="primary" type="submit">{{ isEdit ? 'Enregistrer' : 'Inscrire' }}</button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,19 @@
+.contenu {
+  min-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @media (max-width: 600px) {
+    min-width: 0;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.6);
+}

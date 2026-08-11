@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>Matières et coefficients — {{ data.classeAnnee.classe.nom }}</h2>
+
+<mat-dialog-content>
+  <div class="lignes">
+    @for (ligne of lignes.controls; track $index) {
+      <div [formGroup]="ligne" class="ligne">
+        <mat-form-field appearance="outline" class="matiere-field">
+          <mat-label>Matière</mat-label>
+          <mat-select formControlName="matiere_id" required>
+            @for (matiere of data.matieresDisponibles; track matiere.id) {
+              <mat-option [value]="matiere.id">{{ matiere.nom }}</mat-option>
+            }
+          </mat-select>
+          @if (ligne.controls.matiere_id.hasError('required') && ligne.controls.matiere_id.touched) {
+            <mat-error>La matière est requise.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="coeff-field">
+          <mat-label>Coeff.</mat-label>
+          <input matInput type="number" step="0.5" min="0.5" max="20" formControlName="coefficient" required />
+          @if (ligne.controls.coefficient.hasError('required') && ligne.controls.coefficient.touched) {
+            <mat-error>Requis.</mat-error>
+          }
+          @if ((ligne.controls.coefficient.hasError('min') || ligne.controls.coefficient.hasError('max')) && ligne.controls.coefficient.touched) {
+            <mat-error>Entre 0,5 et 20.</mat-error>
+          }
+        </mat-form-field>
+
+        <button mat-icon-button type="button" (click)="supprimerLigne($index)" matTooltip="Retirer">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    }
+  </div>
+
+  <button mat-stroked-button type="button" (click)="ajouterLigne()">
+    <mat-icon>add</mat-icon>
+    Ajouter une matière
+  </button>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" [mat-dialog-close]="null">Annuler</button>
+  <button mat-flat-button color="primary" (click)="submit()">Enregistrer</button>
+</mat-dialog-actions>
