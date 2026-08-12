@@ -20,6 +20,9 @@
     "@angular/material": "^21.2.14",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
+    "@capacitor/android": "^8.5.0",
+    "@capacitor/cli": "^8.5.0",
+    "@capacitor/core": "^8.5.0",
     "chart.js": "^4.5.1",
     "ng2-charts": "^10.0.0",
     "rxjs": "~7.8.0",
@@ -34,7 +37,7 @@
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
   },
-    "homepage": "https://charite.dmsacad.com",
+  "homepage": "https://charite.dmsacad.com",
   "allowScripts": {
     "core-js@3.49.0": true,
     "esbuild@0.27.2": true,
