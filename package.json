@@ -33,5 +33,11 @@
     "prettier": "^3.8.1",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
+  },
+    "homepage": "https://charite.dmsacad.com",
+  "allowScripts": {
+    "core-js@3.49.0": true,
+    "esbuild@0.27.2": true,
+    "sharp@0.32.6": true
   }
 }
