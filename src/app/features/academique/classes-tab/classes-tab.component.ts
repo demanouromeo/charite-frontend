@@ -2,6 +2,7 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -17,7 +18,7 @@ import {
 @Component({
   selector: 'app-classes-tab',
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatIconModule, MatDialogModule, MatTooltipModule],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, MatDialogModule, MatTooltipModule, MatProgressSpinnerModule],
   templateUrl: './classes-tab.component.html',
 })
 export class ClassesTabComponent implements OnInit {
@@ -28,11 +29,16 @@ export class ClassesTabComponent implements OnInit {
 
   protected readonly classes = signal<Classe[]>([]);
   protected readonly sections = signal<Section[]>([]);
+  protected readonly chargementSections = signal(false);
   protected readonly isAdmin = computed(() => this.authService.hasRole('administrateur'));
   protected readonly displayedColumns = ['nom', 'niveau', 'section', 'actions'];
 
   ngOnInit(): void {
-    this.academiqueService.sections().subscribe((res) => this.sections.set(res.data));
+    this.chargementSections.set(true);
+    this.academiqueService.sections().subscribe((res) => {
+      this.sections.set(res.data);
+      this.chargementSections.set(false);
+    });
     this.charger();
   }
 

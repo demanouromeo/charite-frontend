@@ -2,9 +2,15 @@
   <div class="tab-header">
     <p class="hint">Les types de classe (SIL à CM2 / Class 1 à 6) sont communs à toutes les années scolaires.</p>
     @if (isAdmin()) {
-      <button mat-flat-button color="primary" (click)="ouvrirCreation()">
-        <mat-icon>add</mat-icon>
-        Nouvelle classe
+      <button mat-flat-button color="primary" [disabled]="chargementSections()" (click)="ouvrirCreation()">
+        @if (chargementSections()) {
+          <mat-spinner diameter="18"></mat-spinner>
+        } @else {
+          <ng-container>
+            <mat-icon>add</mat-icon>
+            Nouvelle classe
+          </ng-container>
+        }
       </button>
     }
   </div>

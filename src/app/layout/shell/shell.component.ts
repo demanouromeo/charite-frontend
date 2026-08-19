@@ -1,4 +1,5 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -6,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AuthService } from '../../core/services/auth.service';
 import { Role } from '../../core/models/user.model';
 import { environment } from '../../../environments/environment';
@@ -106,7 +108,17 @@ export class ShellComponent {
     MENU_ITEMS.filter((item) => !item.roles || this.authService.hasRole(...item.roles)),
   );
 
-  constructor(protected readonly authService: AuthService) {}
+  private readonly breakpointObserver = inject(BreakpointObserver);
+  private readonly destroyRef = inject(DestroyRef);
+
+  protected readonly isHandset = signal(false);
+
+  constructor(protected readonly authService: AuthService) {
+    this.breakpointObserver
+      .observe([Breakpoints.Handset, Breakpoints.TabletPortrait, '(max-width: 900px)'])
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result) => this.isHandset.set(result.matches));
+  }
 
   logout(): void {
     this.authService.logout();

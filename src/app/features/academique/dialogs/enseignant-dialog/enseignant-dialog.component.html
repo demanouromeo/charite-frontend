@@ -3,11 +3,14 @@
 <mat-dialog-content class="form-stack">
   <mat-form-field appearance="outline">
     <mat-label>Enseignant</mat-label>
-    <mat-select [(ngModel)]="enseignantId">
+    <mat-select [(ngModel)]="enseignantId" [disabled]="chargementEnseignants()">
       @for (enseignant of enseignants(); track enseignant.id) {
         <mat-option [value]="enseignant.id">{{ enseignant.nom_complet }}</mat-option>
       }
     </mat-select>
+    @if (chargementEnseignants()) {
+      <mat-spinner diameter="18" matSuffix></mat-spinner>
+    }
   </mat-form-field>
   <p class="hint">Rappel : un enseignant ne peut être responsable de plus de 2 classes sur l'année scolaire.</p>
 </mat-dialog-content>

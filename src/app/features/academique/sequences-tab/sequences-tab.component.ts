@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -15,7 +16,15 @@ import { Sequence, Trimestre } from '../../../core/models/note.model';
 @Component({
   selector: 'app-sequences-tab',
   standalone: true,
-  imports: [FormsModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatTooltipModule],
+  imports: [
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './sequences-tab.component.html',
   styleUrl: './sequences-tab.component.scss',
 })
@@ -29,6 +38,7 @@ export class SequencesTabComponent implements OnInit {
   protected readonly anneeSelectionneeId = signal<number | null>(null);
   protected readonly trimestres = signal<Trimestre[]>([]);
   protected readonly loading = signal(false);
+  protected readonly chargementAnnees = signal(false);
 
   protected readonly peutGerer = computed(() => this.authService.hasRole('administrateur'));
 
@@ -37,8 +47,10 @@ export class SequencesTabComponent implements OnInit {
   }
 
   rafraichirAnnees(): void {
+    this.chargementAnnees.set(true);
     this.academiqueService.anneesScolaires().subscribe((res) => {
       this.annees.set(res.data);
+      this.chargementAnnees.set(false);
       const selectionEncoreValide = res.data.some((a) => a.id === this.anneeSelectionneeId());
       const cible = selectionEncoreValide
         ? this.anneeSelectionneeId()

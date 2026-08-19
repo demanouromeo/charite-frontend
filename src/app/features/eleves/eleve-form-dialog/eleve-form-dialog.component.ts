@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { AcademiqueService } from '../../../core/services/academique.service';
 import { AnneeScolaire, ClasseAnnee } from '../../../core/models/academique.model';
@@ -25,6 +26,7 @@ export interface EleveFormDialogData {
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './eleve-form-dialog.component.html',
   styleUrl: './eleve-form-dialog.component.scss',
@@ -40,6 +42,7 @@ export class EleveFormDialogComponent implements OnInit {
   protected readonly classesAnnee = signal<ClasseAnnee[]>([]);
   protected readonly anneeSelectionneeId = signal<number | null>(null);
   protected readonly chargementAnnees = signal(false);
+  protected readonly chargementClasses = signal(false);
 
   protected readonly form = this.fb.nonNullable.group({
     nom: [this.data.eleve?.nom ?? '', Validators.required],
@@ -95,6 +98,10 @@ export class EleveFormDialogComponent implements OnInit {
   }
 
   private chargerClasses(anneeId: number): void {
-    this.academiqueService.classesAnnee(anneeId).subscribe((res) => this.classesAnnee.set(res.data));
+    this.chargementClasses.set(true);
+    this.academiqueService.classesAnnee(anneeId).subscribe((res) => {
+      this.classesAnnee.set(res.data);
+      this.chargementClasses.set(false);
+    });
   }
 }

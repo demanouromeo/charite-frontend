@@ -4,6 +4,7 @@
 
 .sidenav {
   width: 260px;
+  max-width: 85vw;
   display: flex;
   flex-direction: column;
 }
@@ -49,8 +50,26 @@
   opacity: 0.9;
 }
 
+.brand-name-mobile {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .content {
   padding: 24px;
+}
+
+@media (max-width: 599px) {
+  .contact {
+    display: none;
+  }
+
+  .content {
+    padding: 12px 8px;
+  }
 }
 
 .menu-user-info {

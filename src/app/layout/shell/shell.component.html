@@ -1,5 +1,11 @@
 <mat-sidenav-container class="shell">
-  <mat-sidenav mode="side" opened class="sidenav">
+  <mat-sidenav
+    #drawer
+    [mode]="isHandset() ? 'over' : 'side'"
+    [opened]="!isHandset()"
+    [fixedInViewport]="isHandset()"
+    class="sidenav"
+  >
     <div class="brand">
       <img src="/assets/logo.png" alt="Logo" class="brand-logo" />
       <span class="brand-name">{{ ecole.nom }}</span>
@@ -7,7 +13,12 @@
 
     <mat-nav-list>
       @for (item of menuItems(); track item.route) {
-        <a mat-list-item [routerLink]="item.route" routerLinkActive="active-link">
+        <a
+          mat-list-item
+          [routerLink]="item.route"
+          routerLinkActive="active-link"
+          (click)="isHandset() && drawer.close()"
+        >
           <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
           <span matListItemTitle>{{ item.label }}</span>
         </a>
@@ -17,6 +28,12 @@
 
   <mat-sidenav-content>
     <mat-toolbar color="primary" class="topbar">
+      @if (isHandset()) {
+        <button mat-icon-button (click)="drawer.toggle()" aria-label="Ouvrir le menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="brand-name-mobile">{{ ecole.nom }}</span>
+      }
       <span class="spacer"></span>
       <span class="contact">{{ ecole.telephone }} · {{ ecole.email }}</span>
 

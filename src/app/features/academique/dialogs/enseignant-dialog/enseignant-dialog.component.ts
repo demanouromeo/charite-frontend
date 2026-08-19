@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { PersonnelService } from '../../../../core/services/personnel.service';
 import { User } from '../../../../core/models/user.model';
@@ -15,7 +16,14 @@ export interface EnseignantDialogData {
 @Component({
   selector: 'app-enseignant-dialog',
   standalone: true,
-  imports: [FormsModule, MatDialogModule, MatFormFieldModule, MatSelectModule, MatButtonModule],
+  imports: [
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './enseignant-dialog.component.html',
 })
 export class EnseignantDialogComponent implements OnInit {
@@ -25,9 +33,14 @@ export class EnseignantDialogComponent implements OnInit {
 
   protected readonly enseignants = signal<User[]>([]);
   protected readonly enseignantId = signal<number | null>(this.data.classeAnnee.enseignant_principal?.id ?? null);
+  protected readonly chargementEnseignants = signal(false);
 
   ngOnInit(): void {
-    this.personnelService.list({ role: 'enseignant', statut: 'actif' }).subscribe((res) => this.enseignants.set(res.data));
+    this.chargementEnseignants.set(true);
+    this.personnelService.list({ role: 'enseignant', statut: 'actif' }).subscribe((res) => {
+      this.enseignants.set(res.data);
+      this.chargementEnseignants.set(false);
+    });
   }
 
   submit(): void {

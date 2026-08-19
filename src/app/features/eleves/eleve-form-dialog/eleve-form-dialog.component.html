@@ -61,11 +61,15 @@
           [ngModel]="anneeSelectionneeId()"
           [ngModelOptions]="{ standalone: true }"
           (ngModelChange)="onAnneeChange($event)"
+          [disabled]="chargementAnnees()"
         >
           @for (annee of annees(); track annee.id) {
             <mat-option [value]="annee.id">{{ annee.libelle }}</mat-option>
           }
         </mat-select>
+        @if (chargementAnnees()) {
+          <mat-spinner diameter="18" matSuffix></mat-spinner>
+        }
         @if (!chargementAnnees() && annees().length === 0) {
           <mat-hint>Aucune année scolaire créée.</mat-hint>
         }
@@ -73,11 +77,14 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Classe</mat-label>
-        <mat-select formControlName="classe_annee_id" required>
+        <mat-select formControlName="classe_annee_id" required [disabled]="chargementClasses()">
           @for (ca of classesAnnee(); track ca.id) {
             <mat-option [value]="ca.id">{{ ca.classe.nom }} ({{ ca.classe.section.code }})</mat-option>
           }
         </mat-select>
+        @if (chargementClasses()) {
+          <mat-spinner diameter="18" matSuffix></mat-spinner>
+        }
         @if (form.controls.classe_annee_id.hasError('required') && form.controls.classe_annee_id.touched) {
           <mat-error>La classe est requise.</mat-error>
         }

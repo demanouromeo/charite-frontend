@@ -5,6 +5,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
@@ -34,6 +35,7 @@ import {
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './classes-annee-tab.component.html',
   styleUrl: './classes-annee-tab.component.scss',
@@ -49,6 +51,8 @@ export class ClasseAnneeTabComponent implements OnInit {
   protected readonly anneeSelectionneeId = signal<number | null>(null);
   protected readonly classesAnnee = signal<ClasseAnnee[]>([]);
   protected readonly loading = signal(false);
+  protected readonly chargementAnnees = signal(false);
+  protected readonly chargementMatieres = signal<number | null>(null);
   protected readonly impressionInsolvablesId = signal<number | null>(null);
   protected readonly impressionEffectifs = signal(false);
   protected readonly isAdmin = computed(() => this.authService.hasRole('administrateur'));
@@ -67,8 +71,10 @@ export class ClasseAnneeTabComponent implements OnInit {
    * "Années scolaires") en conservant la sélection courante si elle existe toujours.
    */
   rafraichirAnnees(): void {
+    this.chargementAnnees.set(true);
     this.academiqueService.anneesScolaires().subscribe((res) => {
       this.annees.set(res.data);
+      this.chargementAnnees.set(false);
       const selectionEncoreValide = res.data.some((a) => a.id === this.anneeSelectionneeId());
       const cible = selectionEncoreValide
         ? this.anneeSelectionneeId()
@@ -148,7 +154,9 @@ export class ClasseAnneeTabComponent implements OnInit {
   }
 
   ouvrirMatieres(classeAnnee: ClasseAnnee): void {
+    this.chargementMatieres.set(classeAnnee.id);
     this.academiqueService.matieres(classeAnnee.classe.section.id).subscribe((res) => {
+      this.chargementMatieres.set(null);
       const ref = this.dialog.open(MatieresCoeffDialogComponent, {
         data: { classeAnnee, matieresDisponibles: res.data } as MatieresCoeffDialogData,
       });

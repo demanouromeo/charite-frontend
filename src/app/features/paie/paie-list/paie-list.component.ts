@@ -5,6 +5,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
@@ -37,6 +38,7 @@ const MOIS_LABELS = [
     MatInputModule,
     MatDialogModule,
     MatTooltipModule,
+    MatProgressSpinnerModule,
     TableSkeletonComponent,
   ],
   templateUrl: './paie-list.component.html',
@@ -55,6 +57,7 @@ export class PaieListComponent implements OnInit {
   protected readonly statutFilter = signal<'' | 'paye' | 'non_paye'>('');
   protected readonly salaires = signal<Salaire[]>([]);
   protected readonly personnel = signal<User[]>([]);
+  protected readonly chargementPersonnel = signal(false);
   protected readonly loading = signal(false);
   protected readonly enregistrementId = signal<number | null>(null);
   protected readonly displayedColumns = [
@@ -64,7 +67,11 @@ export class PaieListComponent implements OnInit {
   protected readonly isAdmin = computed(() => this.authService.hasRole('administrateur'));
 
   ngOnInit(): void {
-    this.personnelService.list({ statut: 'actif' }).subscribe((res) => this.personnel.set(res.data));
+    this.chargementPersonnel.set(true);
+    this.personnelService.list({ statut: 'actif' }).subscribe((res) => {
+      this.personnel.set(res.data);
+      this.chargementPersonnel.set(false);
+    });
     this.charger();
   }
 

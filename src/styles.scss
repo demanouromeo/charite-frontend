@@ -92,3 +92,68 @@ body {
   border-radius: 12px;
   font-size: 0.8rem;
 }
+
+// Mat-table data grids overflow off-screen on narrow devices instead of
+// reflowing, so let the table itself scroll horizontally while keeping its
+// row/column layout intact (no markup changes needed in each page).
+table.full-width {
+  &.mat-mdc-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    thead,
+    tbody {
+      display: table;
+      width: 100%;
+      table-layout: auto;
+    }
+  }
+}
+
+// Shared list-page layout primitives (`.page-header`, `.filters`, `.filter`)
+// are duplicated with the same names across every feature module's SCSS;
+// patch them centrally for small screens instead of editing each file.
+// !important is needed because component-scoped styles share the same
+// selector specificity and load order isn't guaranteed to put this after them.
+@media (max-width: 599px) {
+  .page-header {
+    flex-wrap: wrap !important;
+    row-gap: 8px !important;
+  }
+
+  .actions-header {
+    flex-wrap: wrap !important;
+  }
+
+  .filters {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .filter {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  // Cells wrap their text onto multiple lines once the column is narrower
+  // than the content (e.g. "ELV-25-0566" breaking across 3 lines), and
+  // icon-only actions buttons wrap onto their own lines too since they're
+  // inline-block content. The table already scrolls horizontally (see the
+  // `table.full-width` rule above), so force every cell onto one line and
+  // let the table grow wider / scroll instead of wrapping.
+  table.full-width.mat-mdc-table {
+    th.mat-mdc-header-cell,
+    td.mat-mdc-cell {
+      white-space: nowrap;
+    }
+  }
+
+  // Angular Material auto-adds `mat-column-<name>` to cells from their
+  // matColumnDef, so this reliably targets every table's actions column
+  // without needing a per-page wrapper element.
+  td.mat-column-actions,
+  th.mat-column-actions {
+    white-space: nowrap;
+  }
+}

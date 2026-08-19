@@ -1,9 +1,15 @@
 <div class="page">
   <div class="page-header">
     <h1>Paie du personnel</h1>
-    <button mat-flat-button color="primary" (click)="ouvrirCreation()">
-      <mat-icon>add</mat-icon>
-      Nouveau salaire
+    <button mat-flat-button color="primary" [disabled]="chargementPersonnel()" (click)="ouvrirCreation()">
+      @if (chargementPersonnel()) {
+        <mat-spinner diameter="18"></mat-spinner>
+      } @else {
+        <ng-container>
+          <mat-icon>add</mat-icon>
+          Nouveau salaire
+        </ng-container>
+      }
     </button>
   </div>
 

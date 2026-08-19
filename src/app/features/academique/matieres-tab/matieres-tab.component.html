@@ -1,9 +1,15 @@
 <div class="tab-content">
   <div class="tab-header">
     <p class="hint">Référentiel des matières, réutilisé lors de la définition des coefficients par classe/année.</p>
-    <button mat-flat-button color="primary" (click)="ouvrirCreation()">
-      <mat-icon>add</mat-icon>
-      Nouvelle matière
+    <button mat-flat-button color="primary" [disabled]="chargementSections()" (click)="ouvrirCreation()">
+      @if (chargementSections()) {
+        <mat-spinner diameter="18"></mat-spinner>
+      } @else {
+        <ng-container>
+          <mat-icon>add</mat-icon>
+          Nouvelle matière
+        </ng-container>
+      }
     </button>
   </div>
 

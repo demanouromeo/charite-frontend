@@ -2,6 +2,7 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -16,7 +17,7 @@ import {
 @Component({
   selector: 'app-matieres-tab',
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatIconModule, MatDialogModule, MatTooltipModule],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, MatDialogModule, MatTooltipModule, MatProgressSpinnerModule],
   templateUrl: './matieres-tab.component.html',
 })
 export class MatieresTabComponent implements OnInit {
@@ -26,10 +27,15 @@ export class MatieresTabComponent implements OnInit {
 
   protected readonly matieres = signal<Matiere[]>([]);
   protected readonly sections = signal<Section[]>([]);
+  protected readonly chargementSections = signal(false);
   protected readonly displayedColumns = ['nom', 'code', 'section', 'actions'];
 
   ngOnInit(): void {
-    this.academiqueService.sections().subscribe((res) => this.sections.set(res.data));
+    this.chargementSections.set(true);
+    this.academiqueService.sections().subscribe((res) => {
+      this.sections.set(res.data);
+      this.chargementSections.set(false);
+    });
     this.charger();
   }
 

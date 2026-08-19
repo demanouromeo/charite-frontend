@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
@@ -31,6 +32,7 @@ import {
     MatTooltipModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './bareme-tab.component.html',
   styleUrl: './bareme-tab.component.scss',
@@ -47,6 +49,7 @@ export class BaremeTabComponent implements OnInit {
   protected readonly classes = signal<Classe[]>([]);
   protected readonly baremes = signal<FraisScolarite[]>([]);
   protected readonly loading = signal(false);
+  protected readonly chargementAnnees = signal(false);
   protected readonly displayedColumns = ['classe', 'montant_total', 'tranches', 'actions'];
 
   protected readonly peutGerer = computed(() => this.authService.hasRole('administrateur', 'econome'));
@@ -57,8 +60,10 @@ export class BaremeTabComponent implements OnInit {
   }
 
   rafraichirAnnees(): void {
+    this.chargementAnnees.set(true);
     this.academiqueService.anneesScolaires().subscribe((res) => {
       this.annees.set(res.data);
+      this.chargementAnnees.set(false);
       const selectionEncoreValide = res.data.some((a) => a.id === this.anneeSelectionneeId());
       const cible = selectionEncoreValide
         ? this.anneeSelectionneeId()

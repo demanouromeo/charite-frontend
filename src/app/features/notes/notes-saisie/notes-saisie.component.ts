@@ -58,6 +58,9 @@ export class NotesSaisieComponent implements OnInit {
   protected readonly grille = signal<GrilleNotes | null>(null);
   protected readonly valeurs = signal<Map<string, number | null>>(new Map());
   protected readonly loading = signal(false);
+  protected readonly chargementAnnees = signal(false);
+  protected readonly chargementClasses = signal(false);
+  protected readonly chargementSequences = signal(false);
   protected readonly enregistrement = signal(false);
   protected readonly telechargementHonneur = signal(false);
   protected readonly toolboxOuverte = signal(false);
@@ -119,8 +122,10 @@ export class NotesSaisieComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.chargementAnnees.set(true);
     this.academiqueService.anneesScolaires().subscribe((res) => {
       this.annees.set(res.data);
+      this.chargementAnnees.set(false);
       const active = res.data.find((a) => a.is_active) ?? res.data[0];
       if (active) {
         this.anneeSelectionneeId.set(active.id);
@@ -220,11 +225,19 @@ export class NotesSaisieComponent implements OnInit {
   }
 
   private chargerClasses(anneeId: number): void {
-    this.academiqueService.classesAnnee(anneeId).subscribe((res) => this.classesAnnee.set(res.data));
+    this.chargementClasses.set(true);
+    this.academiqueService.classesAnnee(anneeId).subscribe((res) => {
+      this.classesAnnee.set(res.data);
+      this.chargementClasses.set(false);
+    });
   }
 
   private chargerTrimestres(anneeId: number): void {
-    this.noteService.trimestres(anneeId).subscribe((res) => this.trimestres.set(res.data));
+    this.chargementSequences.set(true);
+    this.noteService.trimestres(anneeId).subscribe((res) => {
+      this.trimestres.set(res.data);
+      this.chargementSequences.set(false);
+    });
   }
 
   private chargerGrille(classeAnneeId: number, sequenceId: number): void {
